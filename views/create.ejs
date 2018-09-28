@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hearthstone Card Picker</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+  </head>
+
+  <body>
+
+    <div class="container mb-5">
+
+      <nav class="navbar navbar-light bg-light mt-4">
+        <a href="#">
+            <span class="navbar-brand mb-0 h1">Home</span>
+         </a>
+      </nav>
+
+      <div style="display:flex; justify-content:center;">
+        <form action="/cards" method="post" class="mt-4" style="width:400px;">
+          <div class="form-group">
+            <label>Mana</label>
+            <input type="number" name="mana" class="form-control" placeholder="mana">
+          </div>
+          <div class="form-group">
+            <label>Attack</label>
+            <input type="number" name="attack" class="form-control" placeholder="attack">
+          </div>
+          <div class="form-group">
+            <label>Health</label>
+            <input type="number" name="health" class="form-control" placeholder="health">
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <input type="text" name="description" class="form-control" placeholder="description">
+          </div>
+          <div style="display:flex; justify-content:center;">
+            <button type="submit" class="btn btn-outline-success mt-4" style="border: solid 2px green;">Create Card</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="card mt-4" style="display:flex; justify-content:center; width:36rem; margin: 0 auto; border: solid 2px green;">
+        <div class="card-header text-center">
+          Your Current Cards
+        </div>
+        <ul class="list-group list-group-flush">
+          <% for (let i=0; i < deck.length; i++){ %>
+          <li class="list-group-item"> mana: <%= deck[i].mana %> | attack: <%= deck[i].attack %> | health: <%= deck[i].health %> | <%= deck[i].description %>
+            <br>
+              <div style="display:flex; justify-content: flex-end;">
+                <a href="/cards/remove/<%=allcards[i].id%>" class="ml-5">Remove from List</a>
+              </div>
+          </li>
+          <% } %>
+        </ul>
+      </div>
+
+      <div class="card mt-4" style="display:flex; justify-content:center; width:36rem; margin: 0 auto; border: solid 2px #ccc;">
+        <div class="card-header text-center" style="background-color:#ccc;">
+          All Cards List
+        </div>
+        <ul class="list-group list-group-flush">
+          <% for (let i=0; i < allcards.length; i++){ %>
+          <li class="list-group-item"> mana: <%= allcards[i].mana %> | attack: <%= allcards[i].attack %> | health: <%= allcards[i].health %> | <%= allcards[i].description %>
+            <br>
+              <div style="display:flex; justify-content: flex-end;">
+                <a href="/cards/add/<%=allcards[i].id%>" class="mr-5 text">Add to List</a>
+              </div>
+          </li>
+          <% } %>
+        </ul>
+      </div>
+
+
+
+
+
+
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+
+  </html>
